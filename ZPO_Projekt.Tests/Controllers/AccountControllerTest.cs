@@ -23,17 +23,14 @@ namespace ZPO_Projekt.Tests.Controllers
                 Email = "test@test.pl",
                 UserName = "test@test.pl"
             };
-
             var userStore = new Mock<IUserStore<ApplicationUser>>();
             var userManager = new Mock<ApplicationUserManager>(userStore.Object);
-            
             var authenticationManager = new Mock<IAuthenticationManager>();
             var signInManager = new Mock<ApplicationSignInManager>(userManager.Object, authenticationManager.Object);
 
             // Act
             userManager.Setup(x => x.CreateAsync(It.Is<ApplicationUser>(u => u.Email == "test@test.pl"), It.Is<string>(s => s == "12Ed6fg#"))).ReturnsAsync(IdentityResult.Success);
             var controller = new AccountController(userManager.Object, signInManager.Object, new Data.ApplicationDbContext());
-
             RedirectToRouteResult result = await controller.Register(new RegisterViewModel
             {
                 Email = "test@test.pl",

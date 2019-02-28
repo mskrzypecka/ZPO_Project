@@ -7,6 +7,7 @@ using OpenQA.Selenium.Chrome;
 
 namespace ZPO_Projekt.Tests.Controllers
 {
+    [Ignore]
     [TestClass]
     public class OrderTest
     {
