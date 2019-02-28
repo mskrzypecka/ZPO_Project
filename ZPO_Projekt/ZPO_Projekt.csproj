@@ -196,12 +196,16 @@
     </Compile>
     <Compile Include="Helpers\DebugLogger.cs" />
     <Compile Include="Helpers\ILogger.cs" />
-    <Compile Include="Helpers\MemberFactory.cs" />
+    <Compile Include="Helpers\FoodFactory.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />
     <Compile Include="Identity\ApplicationUserManager.cs" />
     <Compile Include="Models\Account\LoginViewModel.cs" />
     <Compile Include="Models\Account\RegisterViewModel.cs" />
     <Compile Include="Models\Account\SettingsViewModel.cs" />
+    <Compile Include="Models\Foods\Desert.cs" />
+    <Compile Include="Models\Foods\IFood.cs" />
+    <Compile Include="Models\Foods\MainDish.cs" />
+    <Compile Include="Models\Foods\Soup.cs" />
     <Compile Include="Models\Order\OrderViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\EmailService..cs" />
@@ -280,6 +284,7 @@
     <Content Include="Views\Order\AddOrder.cshtml" />
     <Content Include="Views\Account\Seed.cshtml" />
     <Content Include="Views\Order\EditOrder.cshtml" />
+    <Content Include="Views\Order\AddNewDish.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Collections.Generic;
 using ZPO_Projekt.Models;
+using ZPO_Projekt.Models.Foods;
 
 namespace ZPO_Projekt.Controllers
 {
@@ -58,8 +59,11 @@ namespace ZPO_Projekt.Controllers
 
             OrderViewModel model = new OrderViewModel();
             model.Order = order;
-            var foodIds = order.Foods.Select(y => y.FoodId).ToList();
-            model.Foods = _context.Foods.Where(x => foodIds.Contains(x.Id)).ToList();
+            var FoodIds = order.Foods.Select(y => y.FoodId).ToList();
+            var foods = _context.Foods.Where(x => FoodIds.Contains(x.Id)).ToList();
+            List<IFood> listIFood = new List<IFood>();
+            foods.ForEach(x => listIFood.Add(FoodFactory.CreateFood(x.Type, x)));
+            model.Foods = listIFood;
 
             return View(model);
         }
@@ -69,8 +73,17 @@ namespace ZPO_Projekt.Controllers
             ViewBag.Message = "Add new Order.";
 
             List<Food> list = _context.Foods.ToList();
+            List<IFood> listOfIFood = new List<IFood>();
+
+            foreach(Food food in list)
+            {
+                IFood currFood = FoodFactory.CreateFood(food.Type, food);
+
+                listOfIFood.Add(currFood);
+            }
+
             OrderViewModel model = new OrderViewModel();
-            model.Foods = list;
+            model.Foods = listOfIFood;
 
             return View(model);
         }
@@ -87,16 +100,16 @@ namespace ZPO_Projekt.Controllers
             Order.DateOfOrder = DateTime.Now;
             Order.Delivery = model.Order.Delivery;
 
-            var foodsInOrder = new List<FoodInOrder>();
-            foreach (var food in model.Foods.Where(x => x.IsChecked == true))
+            var FoodsInOrder = new List<FoodInOrder>();
+            foreach (var Food in model.Foods.Where(x => x.IsChecked == true))
             {
-                FoodInOrder foodInOrder = new FoodInOrder();
-                foodInOrder.Id = Guid.NewGuid().ToString();
-                foodInOrder.FoodId = food.Id;
-                foodInOrder.OrderId = Order.Id;
-                foodsInOrder.Add(foodInOrder);
+                FoodInOrder FoodInOrder = new FoodInOrder();
+                FoodInOrder.Id = Guid.NewGuid().ToString();
+                FoodInOrder.FoodId = Food.Id;
+                FoodInOrder.OrderId = Order.Id;
+                FoodsInOrder.Add(FoodInOrder);
             }
-            Order.Foods = foodsInOrder;
+            Order.Foods = FoodsInOrder;
             
             user.Orders.Add(Order);
             await SaveChanges();
@@ -168,6 +181,29 @@ namespace ZPO_Projekt.Controllers
                 ?? throw new HttpException(404, "Order not found");
 
             return Order;
+        }
+
+        public ActionResult AddNewDish()
+        {
+            ViewBag.Message = "Add new dish to or menu.";
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddNewDish(Food model)
+        {
+            Food newDish = new Food();
+            newDish.IsChecked = false;
+            newDish.Name = model.Name;
+            newDish.Price = (new Random()).Next(20)+10;
+            newDish.Id = Guid.NewGuid().ToString();
+            newDish.Type = model.Type;
+
+            _context.Foods.Add(newDish);
+            await SaveChanges();
+
+            return RedirectToAction("AddOrder");
         }
 
         private async Task SaveChanges()

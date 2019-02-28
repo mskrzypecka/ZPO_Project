@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Web;
+using ZPO_Projekt.Models.Foods;
 
 namespace ZPO_Projekt.Data.Entities
 {
-    public class MainDish : Food
+    public class Desert : Food, IFood
     {
-        [DisplayName("Is spicy?")]
-        public bool IsSpicy { get; set; }
+        public override string GetDescription() => "This is a delicious desert.";
     }
 }

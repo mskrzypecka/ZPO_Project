@@ -25,9 +25,14 @@
                 @Html.HiddenFor(model => model.Foods[i].Type)
                 @Html.DisplayFor(model => model.Foods[i].Price) zl
                 @Html.HiddenFor(model => model.Foods[i].Price)
+                @Model.Foods[i].GetDescription()
             </label>
         </div>
     }
+
+    <div>
+        @Html.ActionLink("Customized order? Add new dish to our menu!", "AddNewDish")
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Order.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })

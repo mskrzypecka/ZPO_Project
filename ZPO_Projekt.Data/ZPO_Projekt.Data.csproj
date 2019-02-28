@@ -57,11 +57,8 @@
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\FoodInOrder.cs" />
     <Compile Include="Entities\Order.cs" />
-    <Compile Include="Entities\Desert.cs" />
-    <Compile Include="Entities\Soup.cs" />
     <Compile Include="Entities\ApplicationUser.cs" />
     <Compile Include="Entities\Food.cs" />
-    <Compile Include="Entities\MainDish.cs" />
     <Compile Include="Migrations\201902281431183_newMigration.cs" />
     <Compile Include="Migrations\201902281431183_newMigration.Designer.cs">
       <DependentUpon>201902281431183_newMigration.cs</DependentUpon>
@@ -81,6 +78,14 @@
     <Compile Include="Migrations\201902281742181_AddedIdToFoodInOrder.cs" />
     <Compile Include="Migrations\201902281742181_AddedIdToFoodInOrder.Designer.cs">
       <DependentUpon>201902281742181_AddedIdToFoodInOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281923432_FieldsRemovedFromFoodsChilds.cs" />
+    <Compile Include="Migrations\201902281923432_FieldsRemovedFromFoodsChilds.Designer.cs">
+      <DependentUpon>201902281923432_FieldsRemovedFromFoodsChilds.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281955107_NewMigrationX.cs" />
+    <Compile Include="Migrations\201902281955107_NewMigrationX.Designer.cs">
+      <DependentUpon>201902281955107_NewMigrationX.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,6 +111,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902281742181_AddedIdToFoodInOrder.resx">
       <DependentUpon>201902281742181_AddedIdToFoodInOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281923432_FieldsRemovedFromFoodsChilds.resx">
+      <DependentUpon>201902281923432_FieldsRemovedFromFoodsChilds.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281955107_NewMigrationX.resx">
+      <DependentUpon>201902281955107_NewMigrationX.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

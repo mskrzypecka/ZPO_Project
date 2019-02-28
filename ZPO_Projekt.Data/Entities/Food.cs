@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using ZPO_Projekt;
 
 namespace ZPO_Projekt.Data.Entities
 {
@@ -14,6 +15,8 @@ namespace ZPO_Projekt.Data.Entities
         public decimal Price { get; set; }
         public DishType Type { get; set; }
         public bool IsChecked { get; set; }
+
+        public virtual string GetDescription() => "This is not specified Food but for surte it's delicious.";
     }
 
     public enum DishType
