@@ -9,7 +9,8 @@ namespace ZPO_Projekt.Models
 {
     public class OrderViewModel
     {
-        public DeliveryType Delivery { get; set; }
+        public Order Order { get; set; }
         public List<Food> Foods { get; set; }
+        public decimal Price { get => Foods.Sum(x => x.Price); }
     }
 }

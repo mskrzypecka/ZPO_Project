@@ -30,10 +30,10 @@
     }
 
     <div class="form-group">
-        @Html.LabelFor(model => model.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Order.Delivery, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EnumDropDownListFor(model => model.Delivery, htmlAttributes: new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Delivery, "", new { @class = "text-danger" })
+            @Html.EnumDropDownListFor(model => model.Order.Delivery, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Order.Delivery, "", new { @class = "text-danger" })
         </div>
     </div>
 

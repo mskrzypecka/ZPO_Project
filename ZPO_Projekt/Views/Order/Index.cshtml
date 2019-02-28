@@ -1,5 +1,6 @@
-﻿@model ZPO_Projekt.Data.Entities.Order
+﻿@model ZPO_Projekt.Models.OrderViewModel
 @using ZPO_Projekt.Data.Entities
+
 @{
     ViewBag.Title = "Order";
 }
@@ -12,16 +13,28 @@
         <div class="info-section">
             <div class="row">
                 <div class="h3"><i class="far fa-id-card"></i> Order data</div>
-                <a id="editOrderBtn" href="@Url.Action("EditOrder", "Order", new { id = Model.Id })"><i class="fas fa-pencil-alt pencil-white"></i></a>
+                <a id="editOrderBtn" href="@Url.Action("EditOrder", "Order", new { id = Model.Order.Id })"><i class="fas fa-pencil-alt pencil-white"></i></a>
             </div>
             <div class="basics-container">
                 <div class="row space-between">
-                    <strong>Id:</strong> <span id="basics-name">@Model.Id</span>
-                    <strong>Date of order:</strong> <span id="basics-birth">@Model.DateOfOrder.ToString("dd.MM.yyyy")</span>
+                    <strong>Id:</strong> <span id="basics-name">@Model.Order.Id</span>
+                    <strong>Date of order:</strong> <span id="basics-birth">@Model.Order.DateOfOrder.ToString("dd.MM.yyyy")</span>
                 </div>
                 <div class="row space-between">
-                    <strong>Delivery Type:</strong> <span id="basics-DeliveryType">@Model.Delivery</span>
-                    <strong>Client Name:</strong> <span id="basics-weight">@Model.Client.UserName</span>
+                    <strong>Delivery Type:</strong> <span id="basics-DeliveryType">@Model.Order.Delivery</span>
+                    <strong>Client Name:</strong> <span id="basics-weight">@Model.Order.Client.UserName</span>
+                </div>
+                <div class="space-between">
+                    <strong>Order:</strong><br />
+
+                    @foreach (var food in Model.Foods)
+                    {
+                    <div>
+                        <span id="basics-food">@food.Name : @food.Price zl</span><br />
+                    </div>
+                    }
+
+                    <strong>Koszt zamowienia:</strong> <span id="basics-DeliveryType">@Model.Price zl</span>
                 </div>
             </div>
         </div>

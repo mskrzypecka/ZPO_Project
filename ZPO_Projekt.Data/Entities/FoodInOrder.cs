@@ -10,7 +10,7 @@ namespace ZPO_Projekt.Data.Entities
 {
     public class FoodInOrder
     {
-        public string id { get; set; }
+        public string Id { get; set; }
         public string OrderId { get; set; }
         public string FoodId { get; set; }
     }

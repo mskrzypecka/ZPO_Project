@@ -56,7 +56,12 @@ namespace ZPO_Projekt.Controllers
                 .Include(x => x.Client)
                 .FirstOrDefault(x => x.Id == id);
 
-            return View(order);
+            OrderViewModel model = new OrderViewModel();
+            model.Order = order;
+            var foodIds = order.Foods.Select(y => y.FoodId).ToList();
+            model.Foods = _context.Foods.Where(x => foodIds.Contains(x.Id)).ToList();
+
+            return View(model);
         }
         
         public ActionResult AddOrder()
@@ -80,13 +85,13 @@ namespace ZPO_Projekt.Controllers
             Order.Id = Guid.NewGuid().ToString();
             Order.Client = user;
             Order.DateOfOrder = DateTime.Now;
-            Order.Delivery = model.Delivery;
+            Order.Delivery = model.Order.Delivery;
 
             var foodsInOrder = new List<FoodInOrder>();
             foreach (var food in model.Foods.Where(x => x.IsChecked == true))
             {
                 FoodInOrder foodInOrder = new FoodInOrder();
-                foodInOrder.id = Guid.NewGuid().ToString();
+                foodInOrder.Id = Guid.NewGuid().ToString();
                 foodInOrder.FoodId = food.Id;
                 foodInOrder.OrderId = Order.Id;
                 foodsInOrder.Add(foodInOrder);
@@ -94,7 +99,6 @@ namespace ZPO_Projekt.Controllers
             Order.Foods = foodsInOrder;
             
             user.Orders.Add(Order);
-            _context.SaveChanges();
             await SaveChanges();
 
             return RedirectToAction("Index", "Order", new { id = Order.Id });
@@ -118,9 +122,7 @@ namespace ZPO_Projekt.Controllers
         {
             var order = GetOrder(id);
 
-            order.Client = model.Client;
             order.Delivery = model.Delivery;
-            order.Foods = model.Foods;
 
             await SaveChanges();
 
@@ -166,24 +168,6 @@ namespace ZPO_Projekt.Controllers
                 ?? throw new HttpException(404, "Order not found");
 
             return Order;
-        }
-
-        private Food GetFood(string FoodId = "")
-        {
-            if(String.IsNullOrEmpty(FoodId))
-            {
-                return _context.Foods
-                        .OfType<Food>()
-                        .FirstOrDefault();
-            }
-
-            var model = _context.Foods
-                        .OfType<Food>()
-                        .Where(x => x.Id == FoodId)
-                        .FirstOrDefault()
-                        ?? throw new HttpException(404, "Food not found");
-
-            return model;
         }
 
         private async Task SaveChanges()

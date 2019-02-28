@@ -261,7 +261,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\_MenuPartial.cshtml" />
-    <Content Include="Views\Order\EditMember.cshtml" />
     <Content Include="Views\Account\Settings.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />
@@ -280,6 +279,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Order\AddOrder.cshtml" />
     <Content Include="Views\Account\Seed.cshtml" />
+    <Content Include="Views\Order\EditOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
