@@ -16,7 +16,7 @@ namespace ZPO_Projekt.Data.Entities
         [DisplayName("Date of order")]
         public DateTime DateOfOrder { get; set; }
         public ApplicationUser Client { get; set; }
-        public List<Food> Foods { get; set; }
+        public List<FoodInOrder> Foods { get; set; }
     }
 
     public enum DeliveryType

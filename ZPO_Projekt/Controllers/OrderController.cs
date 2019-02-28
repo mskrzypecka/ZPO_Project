@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Collections.Generic;
+using ZPO_Projekt.Models;
 
 namespace ZPO_Projekt.Controllers
 {
@@ -32,6 +34,7 @@ namespace ZPO_Projekt.Controllers
 
                 var firstFood = _context.Orders
                 .Include(x => x.Foods)
+                .Include(x => x.Client)
                 .Where(x => x.Client.Id == userId)
                 .OrderBy(x => x.DateOfOrder)
                 .FirstOrDefault();
@@ -47,28 +50,29 @@ namespace ZPO_Projekt.Controllers
                 }
             }
 
-            var Order = _context.Foods.FirstOrDefault(x => x.Id == id);
+            var order = _context
+                .Orders
+                .Include(x => x.Foods)
+                .Include(x => x.Client)
+                .FirstOrDefault(x => x.Id == id);
 
-            if (Order is Soup Soup)
-            {
-                return View(GetFood());
-            }
-            else
-            {
-                return View(GetOrder());
-            }
+            return View(order);
         }
         
         public ActionResult AddOrder()
         {
             ViewBag.Message = "Add new Order.";
 
-            return View();
+            List<Food> list = _context.Foods.ToList();
+            OrderViewModel model = new OrderViewModel();
+            model.Foods = list;
+
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AddOrder(Order model)
+        public async Task<ActionResult> AddOrder(OrderViewModel model)
         {
             var user = GetUser();
 
@@ -77,12 +81,23 @@ namespace ZPO_Projekt.Controllers
             Order.Client = user;
             Order.DateOfOrder = DateTime.Now;
             Order.Delivery = model.Delivery;
-            Order.Foods = model.Foods;
 
-            _context.Orders.Add(Order);
+            var foodsInOrder = new List<FoodInOrder>();
+            foreach (var food in model.Foods.Where(x => x.IsChecked == true))
+            {
+                FoodInOrder foodInOrder = new FoodInOrder();
+                foodInOrder.id = Guid.NewGuid().ToString();
+                foodInOrder.FoodId = food.Id;
+                foodInOrder.OrderId = Order.Id;
+                foodsInOrder.Add(foodInOrder);
+            }
+            Order.Foods = foodsInOrder;
+            
+            user.Orders.Add(Order);
+            _context.SaveChanges();
             await SaveChanges();
 
-            return RedirectToAction("Index", model.Id);
+            return RedirectToAction("Index", "Order", new { id = Order.Id });
         }      
         
         public ActionResult EditOrder(string id)
@@ -90,6 +105,8 @@ namespace ZPO_Projekt.Controllers
             ViewBag.Message = "Edit Order.";
 
             var model = _context.Orders
+                .Include(x => x.Foods)
+                .Include(x => x.Client)
                 .FirstOrDefault(x => x.Id == id);
 
             return View(model);
@@ -115,6 +132,7 @@ namespace ZPO_Projekt.Controllers
             var user = GetUser();
             var model = _context.Orders
                 .Include(x => x.Foods)
+                .Include(x => x.Client)
                 .Where(x => x.Client.Id == user.Id)
                 .OrderBy(x => x.DateOfOrder)
                 .AsEnumerable();
@@ -137,6 +155,8 @@ namespace ZPO_Projekt.Controllers
             if (String.IsNullOrEmpty(OrderId))
             {
                 return _context.Orders
+                    .Include(x => x.Foods)
+                    .Include(x => x.Client)
                         .FirstOrDefault();
             }
 

@@ -9,6 +9,8 @@ namespace ZPO_Projekt.Data
         public DbSet<Food> Foods { get; set; }
 
         public DbSet<Order> Orders { get; set; }
+        public DbSet<FoodInOrder> FoodsInOrders { get; set; }
+
 
         public ApplicationDbContext() : base("DefaultConnection", throwIfV1Schema: false)
         {

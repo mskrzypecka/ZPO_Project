@@ -1,9 +1,8 @@
-﻿@model ZPO_Projekt.Data.Entities.Food
+﻿@model ZPO_Projekt.Data.Entities.Order
 @using ZPO_Projekt.Data.Entities
 @{
     ViewBag.Title = "Order";
 }
-
 
 <div class="row">
     @Html.Action("DisplayMenu")
@@ -12,42 +11,20 @@
         {
         <div class="info-section">
             <div class="row">
-                <div class="h3"><i class="far fa-id-card"></i> Basic info</div>
+                <div class="h3"><i class="far fa-id-card"></i> Order data</div>
                 <a id="editOrderBtn" href="@Url.Action("EditOrder", "Order", new { id = Model.Id })"><i class="fas fa-pencil-alt pencil-white"></i></a>
             </div>
             <div class="basics-container">
                 <div class="row space-between">
-                    <strong>Name:</strong> <span id="basics-name">@Model.Name</span>
-                    <strong>Date of birth:</strong> <span id="basics-birth">@Model.DateOfBirth.ToString("dd.MM.yyyy")</span>
+                    <strong>Id:</strong> <span id="basics-name">@Model.Id</span>
+                    <strong>Date of order:</strong> <span id="basics-birth">@Model.DateOfOrder.ToString("dd.MM.yyyy")</span>
                 </div>
                 <div class="row space-between">
-                    <strong>DeliveryType:</strong> <span id="basics-DeliveryType">@Model.DeliveryType</span>
-                    <strong>Weight:</strong> <span id="basics-weight">@Model.Weight</span>
+                    <strong>Delivery Type:</strong> <span id="basics-DeliveryType">@Model.Delivery</span>
+                    <strong>Client Name:</strong> <span id="basics-weight">@Model.Client.UserName</span>
                 </div>
             </div>
         </div>
-            @*if (Model is Soup Soup)
-            {
-            <div class="info-section">
-                <div class="row">
-                    @Html.ActionLink("+", "AddChip", "Order", new { id = Model.Id }, htmlAttributes: new { @class = "link" })
-                    <div class="h3"><i class="fas fa-passport"></i> Chips</div>
-                </div>
-                @if (Soup.Chips != null)
-                {
-                    foreach (var chip in Soup.Chips)
-                    {
-                    <div class="info-container">
-                        <a id="editChipBtn" href="@Url.Action("EditChip", "Order", new { id = chip.Id, FoodId = Model.Id })"><i class="fas fa-pencil-alt pencil-dark"></i></a>
-                        <div class="row space-between">
-                            <div><strong>Name:</strong> <span id="chip-name-@chip.Id">@chip.Name</span></div>
-                            <span id="chip-number-@chip.Id">@chip.ChipDate</span></div>
-                        <div class="row"><strong>Number:</strong> <span id="chip-number-@chip.Id">@chip.Number</span></div>
-                    </div>
-                    }
-                }
-            </div>
-            }*@
         }
         else
         {

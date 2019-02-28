@@ -29,7 +29,67 @@ namespace ZPO_Projekt.Controllers
             _signInManager = signInManager;
             _context = context;
         }
-        
+
+        [AllowAnonymous]
+        public async Task<ActionResult> Seed()
+        {
+            Food food1 = new Food();
+            food1.Id = Guid.NewGuid().ToString();
+            food1.Name = "Pizza";
+            food1.Price = 20;
+            food1.IsChecked = false;
+            food1.Type = DishType.MainDish;
+            _context.Foods.Add(food1);
+            await _context.SaveChangesAsync();
+
+            Food food2 = new Food();
+            food2.Id = Guid.NewGuid().ToString();
+            food2.Name = "Chocolate Icecream";
+            food2.Price = 5;
+            food2.IsChecked = false;
+            food2.Type = DishType.Desert;
+            _context.Foods.Add(food2);
+            await _context.SaveChangesAsync();
+
+            Food food3 = new Food();
+            food3.Id = Guid.NewGuid().ToString();
+            food3.Name = "Tomato soup";
+            food3.Price = 9;
+            food3.IsChecked = false;
+            food3.Type = DishType.Soup;
+            _context.Foods.Add(food3);
+            await _context.SaveChangesAsync();
+
+            Food food4 = new Food();
+            food4.Id = Guid.NewGuid().ToString();
+            food4.Name = "Spaghetti";
+            food4.Price = 15;
+            food4.IsChecked = false;
+            food4.Type = DishType.MainDish;
+            _context.Foods.Add(food4);
+            await _context.SaveChangesAsync();
+
+            Food food5 = new Food();
+            food5.Id = Guid.NewGuid().ToString();
+            food5.Name = "Strawberry Icecream";
+            food5.Price = 5;
+            food5.IsChecked = false;
+            food5.Type = DishType.Desert;
+            _context.Foods.Add(food5);
+            await _context.SaveChangesAsync();
+
+            Food food6 = new Food();
+            food6.Id = Guid.NewGuid().ToString();
+            food6.Name = "Carrot soup";
+            food6.Price = 8;
+            food6.IsChecked = false;
+            food6.Type = DishType.Soup;
+            _context.Foods.Add(food6);
+            await _context.SaveChangesAsync();
+
+            return View();
+        }
+
         [AllowAnonymous]
         public ActionResult Login()
         {

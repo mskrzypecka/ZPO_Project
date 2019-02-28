@@ -13,6 +13,7 @@ namespace ZPO_Projekt.Data.Entities
         public string Name { get; set; }
         public decimal Price { get; set; }
         public DishType Type { get; set; }
+        public bool IsChecked { get; set; }
     }
 
     public enum DishType

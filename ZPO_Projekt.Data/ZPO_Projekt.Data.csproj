@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="Entities\Address.cs" />
+    <Compile Include="Entities\FoodInOrder.cs" />
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\Desert.cs" />
     <Compile Include="Entities\Soup.cs" />
@@ -64,6 +65,22 @@
     <Compile Include="Migrations\201902281431183_newMigration.cs" />
     <Compile Include="Migrations\201902281431183_newMigration.Designer.cs">
       <DependentUpon>201902281431183_newMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281525167_IsCheckedFieldAdded.cs" />
+    <Compile Include="Migrations\201902281525167_IsCheckedFieldAdded.Designer.cs">
+      <DependentUpon>201902281525167_IsCheckedFieldAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281729509_FoodInOrderNewParamsAdded.cs" />
+    <Compile Include="Migrations\201902281729509_FoodInOrderNewParamsAdded.Designer.cs">
+      <DependentUpon>201902281729509_FoodInOrderNewParamsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281737305_FoodInOrderNewParamsAdded1.cs" />
+    <Compile Include="Migrations\201902281737305_FoodInOrderNewParamsAdded1.Designer.cs">
+      <DependentUpon>201902281737305_FoodInOrderNewParamsAdded1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902281742181_AddedIdToFoodInOrder.cs" />
+    <Compile Include="Migrations\201902281742181_AddedIdToFoodInOrder.Designer.cs">
+      <DependentUpon>201902281742181_AddedIdToFoodInOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +94,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201902281431183_newMigration.resx">
       <DependentUpon>201902281431183_newMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281525167_IsCheckedFieldAdded.resx">
+      <DependentUpon>201902281525167_IsCheckedFieldAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281729509_FoodInOrderNewParamsAdded.resx">
+      <DependentUpon>201902281729509_FoodInOrderNewParamsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281737305_FoodInOrderNewParamsAdded1.resx">
+      <DependentUpon>201902281737305_FoodInOrderNewParamsAdded1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902281742181_AddedIdToFoodInOrder.resx">
+      <DependentUpon>201902281742181_AddedIdToFoodInOrder.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
