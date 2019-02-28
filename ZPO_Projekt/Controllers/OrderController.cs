@@ -62,7 +62,7 @@ namespace ZPO_Projekt.Controllers
             var FoodIds = order.Foods.Select(y => y.FoodId).ToList();
             var foods = _context.Foods.Where(x => FoodIds.Contains(x.Id)).ToList();
             List<IFood> listIFood = new List<IFood>();
-            foods.ForEach(x => listIFood.Add(FoodFactory.CreateFood(x.Type, x)));
+            foods.ForEach(x => listIFood.Add(FoodAdapter.RestoreIFood(x.Type, x)));
             model.Foods = listIFood;
 
             return View(model);
@@ -77,7 +77,7 @@ namespace ZPO_Projekt.Controllers
 
             foreach(Food food in list)
             {
-                IFood currFood = FoodFactory.CreateFood(food.Type, food);
+                IFood currFood = FoodAdapter.RestoreIFood(food.Type, food);
 
                 listOfIFood.Add(currFood);
             }

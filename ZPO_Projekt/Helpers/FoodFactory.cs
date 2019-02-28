@@ -25,33 +25,5 @@ namespace ZPO_Projekt.Helpers
                     throw new ArgumentException();
             }
         }
-
-        internal static IFood CreateFood(DishType type, Food model)
-        {
-            IFood food = null;
-
-            switch (type)
-            {
-                case DishType.MainDish:
-                    food = new MainDish();
-                    break;
-                case DishType.Soup:
-                    food = new Soup();
-                    break;
-                case DishType.Desert:
-                    food = new Desert();
-                    break;
-                default:
-                    throw new ArgumentException();
-            }
-
-            food.Id = model.Id;
-            food.IsChecked = model.IsChecked;
-            food.Name = model.Name;
-            food.Price = model.Price;
-            food.Type = type;
-
-            return food;
-        }
     }
 }

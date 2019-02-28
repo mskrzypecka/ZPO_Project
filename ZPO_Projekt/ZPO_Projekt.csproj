@@ -195,6 +195,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DebugLogger.cs" />
+    <Compile Include="Helpers\FoodAdapter.cs" />
     <Compile Include="Helpers\ILogger.cs" />
     <Compile Include="Helpers\FoodFactory.cs" />
     <Compile Include="Identity\ApplicationSignInManager.cs" />

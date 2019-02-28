@@ -12,5 +12,7 @@ Więcej nie jest potrzebne.
 Zastosowane wzorce projektowe:
 - MVC (struktura projektu)
 - Fabryka (ZPO_Projekt.Helpers.FoodFactory)
-- Strategia
+- Strategia 
     - rozne opisy przy zamawianiu w zaleznosci od rodzaju jedzenia
+- Singleton (DebugLogger)
+- Adapter (FoodAdapter)
