@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IGrouping<ZPO_Projekt.Data.Entities.DishType, ZPO_Projekt.Data.Entities.Food>>
+
+@{
+    var id = Url.RequestContext.RouteData.Values["id"]?.ToString() ?? string.Empty;
+}
+
+<div class="menu col-3">
+    @if (Model != null)
+    {
+        foreach (var group in Model)
+        {
+            foreach (var Order in group)
+            {
+                <div>
+                    <button id="Order-btn-@Order.Id" class="btn btn-menu">
+                        @if (Order.Id == id)
+                        {
+                            <div id="Order-picture-@Order.Id">
+                                <img src="x" width="100" height="100" />
+                            </div>
+                        }
+                        @switch (Order.Type)
+                        {
+                            case ZPO_Projekt.Data.Entities.DishType.MainDish:
+                                <i class="fas fa-user"></i>
+                                break;
+                            case ZPO_Projekt.Data.Entities.DishType.Soup:
+                                <i class="fas fa-paw"></i>
+                                break;
+                            case ZPO_Projekt.Data.Entities.DishType.Desert:
+                                <i class="fas fa-truck-monster"></i>
+                                break;
+                        }
+                        @Html.ActionLink(Order.Name, "Index", "Order", routeValues: new { Id = Order.Id }, htmlAttributes: new { @class = "link" })
+                    </button>
+    
+                    </div>
+            }
+        }
+    }
+    <button id="addOrder" class="btn btn-menu">
+        @Html.ActionLink("Add Order +", "AddOrder", "Order", routeValues: null, htmlAttributes: new { @class = "link" })
+    </button>
+</div>

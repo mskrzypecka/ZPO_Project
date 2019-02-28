@@ -1,0 +1,49 @@
+﻿@model ZPO_Projekt.Data.Entities.Vaccine
+
+@{
+    ViewBag.Title = "AddVaccine";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="center col-4">
+        <div class="h3">Vaccine</div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="hidden" name="FoodId" value="@ViewBag.FoodId" />
+        <div id="newVaccineName" class="input-section">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+            <div class="input-container">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="input-section">
+            @Html.LabelFor(model => model.Serie, htmlAttributes: new { @class = "" })
+            <div id="newVaccineSerie" class="input-container">
+                @Html.EditorFor(model => model.Serie, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.Serie, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="input-section">
+            @Html.LabelFor(model => model.DateOfVaccination, htmlAttributes: new { @class = "" })
+            <div id="newVaccineDate" class="input-container">
+                @Html.EditorFor(model => model.DateOfVaccination, new { htmlAttributes = new { @class = "" } })
+                @Html.ValidationMessageFor(model => model.DateOfVaccination, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <input id="newVaccineSubmit" type="submit" value="Add" class="btn" />
+    </div>
+}
+
+<div class="center">
+    @Html.ActionLink("Back to List", "Index", "Order", null, htmlAttributes: new { @class = "link-dark" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

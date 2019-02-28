@@ -1,0 +1,226 @@
+﻿html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0 auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+
+main {
+    background-color: #dadada;
+    min-height: calc(100% - 100px);
+}
+
+footer {
+    height: 50px;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #008a71;
+}
+
+.info-section .h1,
+.info-section .h2,
+.info-section .h3,
+.info-section .h4,
+.info-section .h5,
+.info-section .h6,
+.article .h1,
+.article .h2,
+.article .h3,
+.article .h4,
+.article .h5,
+.article .h6 {
+    color: white;
+}
+
+.h1 {
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 15px;
+}
+
+.h2 {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    padding: 12px;
+}
+
+.h3 {
+    display: block;
+    font-size: 1.17em;
+    font-weight: bold;
+    padding: 9px;
+}
+
+.h4 {
+    display: block;
+    font-weight: bold;
+    padding: 6px;
+}
+
+.h5 {
+    display: block;
+    font-size: .83em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.h6 {
+    display: block;
+    font-size: .67em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.navbar {
+    position: sticky;
+    height: 50px;
+}
+
+nav, .nav-login {
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.navbar a {
+    padding: 14px 12px;
+    color: white;
+    text-decoration: solid;
+}
+
+.article {
+    padding: 12px;
+    margin: 10px;
+}
+
+.link {
+    color: white;
+    text-decoration: solid;    
+    padding: 12px;
+}
+
+.link-dark {
+    color: #008a71;
+    text-decoration: solid;
+    padding: 12px;
+}
+
+.text-danger {
+    color: red;
+}
+
+.hamburger button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding: 16px;
+    cursor: pointer;
+}
+
+    .hamburger button:focus {
+        border: none;
+    }
+
+.picture {
+    opacity: 0;
+    display: none;
+}
+
+.picture-visible {
+    opacity: 1;
+    display: inherit;
+}
+
+@media screen and (min-width: 800px) {
+    .hamburger {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        position: absolute;
+        flex-direction: column;
+        margin-top: 50px;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #808080;
+        width: 50%;
+        padding: 16px;
+        align-items: flex-start;
+    }
+
+    .nav-visible {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .hidden-sm {
+        display: none;
+    }
+}
+
+/* Order CSS */
+.info-section, .btn, .navbar, .article {
+    background-color: #008a71;
+    color: white;
+}
+
+.info-section, .basics-container {
+    padding: 12px;
+}
+
+.info-section, .info-container, .basics-container {
+    border-radius: 0px 20px 0px 0px;
+    margin-bottom: 10px;
+}
+
+.info-container, .basics-container {
+    background-color: white;
+    color: darkgreen;
+}
+
+.btn {
+    font: bold 12px arial, verdana;
+    min-height: 20px;
+}
+
+.btn, .info-container {
+    margin-bottom: 5px;
+    padding: 10px;
+    min-width: 150px;
+}
+
+.btn-menu {
+    border-radius: 20px 0px 0px 0px;
+    font: bold 16px arial, verdana;
+    width: 100%;
+}
+
+.pencil-dark {
+    color: #008a71;
+}
+
+.pencil-white {
+    color: #fff;
+}
+
+.input-section {
+    background-color: white;
+    border: 2px solid #dddddd;
+    margin: 0 auto;
+}
+
+.input-container {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+}
